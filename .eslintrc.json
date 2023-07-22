@@ -8,12 +8,14 @@
         "newlinesBetween": "always",
         "groups": [
           ["/^react$/", "/^react-(native|dom)$/", "/^next/"],
+          "module",
           "/^@/assets/",
           "/^@/components/",
           "/^@/config/",
+          "/^@/hooks/",
           "/^@/lib/",
+          "/^@/validations/",
           "/^@/styles/",
-          "module",
           ["parent", "sibling"],
           "index"
         ],
