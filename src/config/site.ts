@@ -11,8 +11,8 @@ export type MainNavLinks = {
 export const siteConfig = {
   mainNav: [
     {
-      title: "Home",
-      href: "/home",
+      title: "Dashboard",
+      href: "/dashboard",
       icon: "home",
     },
     {
