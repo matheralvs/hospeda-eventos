@@ -9,6 +9,9 @@ export const metadata: Metadata = {
     template: "%s | Hospeda Eventos",
     default: "Hospeda Eventos",
   },
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
