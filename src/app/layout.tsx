@@ -1,16 +1,21 @@
-import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Metadata } from "next";
 
-const roboto = Roboto({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-roboto" });
+import { roboto } from "@/lib/fonts";
+
+import "@/styles/globals.css";
 
 export const metadata: Metadata = {
   title: {
-    template: "%s - Hospeda Eventos",
+    template: "%s | Hospeda Eventos",
     default: "Hospeda Eventos",
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="pt-br">
       <body className={roboto.className}>{children}</body>
