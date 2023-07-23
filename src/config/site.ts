@@ -22,7 +22,7 @@ export const siteConfig = {
     },
     {
       title: "Financeiro",
-      href: "/finance",
+      href: "/finances",
       icon: "dollar-sign",
     },
     {
