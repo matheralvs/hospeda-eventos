@@ -20,7 +20,7 @@ export function MainNavLink({ href, children }: MainNavLinkProps) {
     <Link
       href={href}
       className={clsx(
-        "rounded-[10px] p-2 transition-colors hover:bg-layout-body",
+        "rounded-[10px] p-2 text-content-base/60 transition-colors hover:bg-layout-body",
         {
           "bg-primary-pure text-white hover:bg-primary-pure/90": isPathSelected,
         },

@@ -1,6 +1,6 @@
-import { Icon } from "@/components/Icon";
-
 import dynamicIconImports from "lucide-react/dynamicIconImports";
+
+import { Icon } from "@/components/Icon";
 
 interface MainNavIconProps {
   icon: keyof typeof dynamicIconImports;
