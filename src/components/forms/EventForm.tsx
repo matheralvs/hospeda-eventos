@@ -13,6 +13,8 @@ import { DateAndTimeForm } from "./NewEventForm/components/DateAndTimeForm";
 import { EventInformationForm } from "./NewEventForm/components/EventInformationForm";
 import { EventsPlaceForm } from "./NewEventForm/components/EventsPlaceForm";
 
+type NewEventFormData = z.infer<typeof NewEventFormSchema>;
+
 const defaultValues: NewEventFormData = {
   event_name: "",
   privacy: "public",
@@ -28,16 +30,14 @@ const defaultValues: NewEventFormData = {
   time: "",
 };
 
-type NewEventFormData = z.infer<typeof NewEventFormSchema>;
-
-interface NewEventFormProps {
+interface EventFormProps {
   id?: string;
 }
 
-export function NewEventForm({ id }: NewEventFormProps) {
+export function EventForm({ id }: EventFormProps) {
   const form = useForm<NewEventFormData>({
     resolver: zodResolver(NewEventFormSchema),
-    defaultValues,
+    defaultValues: id ? defaultValues : {},
   });
 
   function onSubmit(data: NewEventFormData) {
@@ -58,7 +58,7 @@ export function NewEventForm({ id }: NewEventFormProps) {
         <DateAndTimeForm />
 
         <div className="flex justify-end">
-          <Button type="submit">Cadastrar</Button>
+          <Button type="submit">{id ? "Salvar" : "Cadastrar"}</Button>
         </div>
       </form>
     </Form.Root>
