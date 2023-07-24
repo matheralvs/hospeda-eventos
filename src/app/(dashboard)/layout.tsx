@@ -1,19 +1,21 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { ReactNode } from "react";
 
 import { Header } from "@/components/layouts/Header";
 import { Sidebar } from "@/components/layouts/Sidebar";
 
-export interface DashboardLayoutProps {
+interface DashboardLayoutProps {
   children: ReactNode;
 }
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const pathName = usePathname();
 
-  if (pathName === "/events/new") {
-    return <div>{children}</div>;
+  const { id } = useParams();
+
+  if (pathName === "/events/new" || pathName === `/events/edit/${id}`) {
+    return <>{children}</>;
   }
 
   return (
