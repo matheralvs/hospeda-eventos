@@ -11,7 +11,7 @@ import { Divider } from "../ui/Divider";
 import { Form } from "../ui/form";
 import { DateAndTimeForm } from "./NewEventForm/components/DateAndTimeForm";
 import { EventInformationForm } from "./NewEventForm/components/EventInformationForm";
-import { EventsPlaceForm } from "./NewEventForm/components/EventsPlaceForm";
+import { EventPlaceForm } from "./NewEventForm/components/EventPlaceForm";
 
 type NewEventFormData = z.infer<typeof NewEventFormSchema>;
 
@@ -51,7 +51,7 @@ export function EventForm({ id }: EventFormProps) {
 
         <Divider className="h-[2px]" />
 
-        <EventsPlaceForm />
+        <EventPlaceForm />
 
         <Divider className="h-[2px]" />
 

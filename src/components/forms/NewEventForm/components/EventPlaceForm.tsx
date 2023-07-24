@@ -3,7 +3,7 @@ import { useFormContext } from "react-hook-form";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/Input";
 
-export function EventsPlaceForm() {
+export function EventPlaceForm() {
   const form = useFormContext();
 
   return (
@@ -102,7 +102,7 @@ export function EventsPlaceForm() {
             <Form.Item>
               <Form.Label>Estado</Form.Label>
               <Form.Control>
-                <Input placeholder="Bairro" {...field} />
+                <Input placeholder="Estado" {...field} />
               </Form.Control>
               <Form.Message />
             </Form.Item>
