@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 export default function Events() {
-  const { events, loading, listEvents } = useEvent();
+  const { events, listEvents } = useEvent();
 
   useEffect(() => {
     listEvents();
@@ -25,9 +25,9 @@ export default function Events() {
     <main className="flex flex-col gap-6 px-20 pt-8">
       <HeaderWithActions />
 
-      {loading ? (
+      {!events ? (
         <Loading />
-      ) : !events || events.length === 0 ? (
+      ) : events.length === 0 ? (
         <Empty />
       ) : (
         <EventsTable.Root>
