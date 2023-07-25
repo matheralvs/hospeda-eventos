@@ -4,7 +4,7 @@ import { RootLayoutProvider } from "@/providers/RootLayoutProvider";
 
 import { Toaster } from "@/components/ui/Toaster";
 
-import { roboto } from "@/lib/fonts";
+import { fontRoboto } from "@/lib";
 
 import "@/styles/globals.css";
 
@@ -25,7 +25,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
-      <body className={roboto.className}>
+      <body className={fontRoboto.className}>
         <RootLayoutProvider>
           {children}
           <Toaster />

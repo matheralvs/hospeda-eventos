@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { useFormField } from "@/hooks";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib";
 
 export const FormMessage = React.forwardRef<
   HTMLParagraphElement,

@@ -1,6 +1,6 @@
 import { HTMLAttributes } from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib";
 
 interface HeadingProps extends HTMLAttributes<HTMLHeadingElement> {
   text: string;

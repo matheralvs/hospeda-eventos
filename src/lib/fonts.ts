@@ -1,6 +1,6 @@
 import { Roboto } from "next/font/google";
 
-export const roboto = Roboto({
+export const fontRoboto = Roboto({
   subsets: ["latin"],
   weight: ["400", "700"],
   variable: "--font-roboto",
