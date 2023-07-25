@@ -36,7 +36,7 @@ export function EventContextProvider({ children }: EventContextProviderProps) {
         await eventService.createWithAddress(eventData);
       } catch (error) {
         if (error instanceof Error) {
-          console.log(error.message);
+          console.log(error);
         }
       } finally {
         setLoading(false);
@@ -53,9 +53,7 @@ export function EventContextProvider({ children }: EventContextProviderProps) {
 
       setEvents(eventsResponse);
     } catch (error) {
-      if (error instanceof Error) {
-        console.log(error.message);
-      }
+      console.log(error);
     } finally {
       setLoading(false);
     }
@@ -67,9 +65,7 @@ export function EventContextProvider({ children }: EventContextProviderProps) {
 
       await eventService.deleteEventById(eventId);
     } catch (error) {
-      if (error instanceof Error) {
-        console.log(error.message);
-      }
+      console.log(error);
     } finally {
       setLoading(false);
     }
@@ -82,9 +78,7 @@ export function EventContextProvider({ children }: EventContextProviderProps) {
 
         await eventService.updateEvent(eventId, eventData);
       } catch (error) {
-        if (error instanceof Error) {
-          console.log(error.message);
-        }
+        console.log(error);
       } finally {
         setLoading(false);
       }
