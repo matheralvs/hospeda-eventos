@@ -2,7 +2,7 @@
 
 import { ReactNode } from "react";
 
-import { EventContextProvider } from "@/contexts/EventContext";
+import { EventContextProvider } from "@/contexts";
 
 interface RootLayoutProviderProps {
   children: ReactNode;
