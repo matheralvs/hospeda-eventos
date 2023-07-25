@@ -1,11 +1,10 @@
 import { useRouter } from "next/navigation";
 
+import { useEvent } from "@/contexts/hooks";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
 import { EventFormData } from "@/components/forms/EventForm/EventForm";
-
-import { eventService } from "@/services/eventService";
 
 import { EventFormSchema } from "@/validations";
 
@@ -29,6 +28,8 @@ export const defaultValues: EventFormData = {
 };
 
 export function useEventForm() {
+  const { createEventWithAddress } = useEvent();
+
   const form = useForm<EventFormData>({
     resolver: zodResolver(EventFormSchema),
     defaultValues,
@@ -45,7 +46,7 @@ export function useEventForm() {
     initialDateString = JSON.parse(initialDateString);
 
     try {
-      await eventService.createWithAddress({
+      await createEventWithAddress({
         ...eventData,
         initialDate: initialDateString,
       });
@@ -53,8 +54,6 @@ export function useEventForm() {
       toast.success("Evento criado com sucesso!");
 
       router.push("/events");
-
-      router.refresh();
 
       form.reset();
     } catch (error) {
