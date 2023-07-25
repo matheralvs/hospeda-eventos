@@ -10,7 +10,7 @@ import { MoreHorizontal, Pencil, Trash2, Calendar, MapPin } from "lucide-react";
 
 import { IconButton } from "@/components/ui/buttons/IconButton";
 
-import { useToast } from "@/hooks/useToast";
+import { useToast } from "@/hooks";
 
 import { EventInput } from "@/services/dtos/EventServiceDTO";
 

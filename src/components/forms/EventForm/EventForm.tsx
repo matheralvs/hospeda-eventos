@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/buttons/Button";
 import { Divider } from "@/components/ui/Divider";
 import { Form } from "@/components/ui/form";
 
-import { useToast } from "@/hooks/useToast";
+import { useToast } from "@/hooks";
 
 import { EventFormSchema } from "@/validations";
 

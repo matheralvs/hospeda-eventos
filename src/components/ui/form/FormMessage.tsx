@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { useFormField } from "@/hooks/useFormField";
+import { useFormField } from "@/hooks";
 
 import { cn } from "@/lib/utils";
 
