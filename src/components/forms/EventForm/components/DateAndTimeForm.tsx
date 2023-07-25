@@ -20,7 +20,12 @@ export function DateAndTimeForm() {
             <Form.Item>
               <Form.Label>Data de início</Form.Label>
               <Form.Control>
-                <Input type="date" {...field} />
+                <Input
+                  type="date"
+                  onChange={field.onChange}
+                  onBlur={field.onBlur}
+                  ref={field.ref}
+                />
               </Form.Control>
               <Form.Message />
             </Form.Item>
