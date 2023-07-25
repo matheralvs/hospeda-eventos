@@ -1,5 +1,9 @@
 import { Metadata } from "next";
 
+import { RootLayoutProvider } from "@/providers/RootLayoutProvider";
+
+import { Toaster } from "@/components/ui/Toaster";
+
 import { roboto } from "@/lib/fonts";
 
 import "@/styles/globals.css";
@@ -21,7 +25,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
-      <body className={roboto.className}>{children}</body>
+      <body className={roboto.className}>
+        <RootLayoutProvider>{children}</RootLayoutProvider>
+        <Toaster />
+      </body>
     </html>
   );
 }
