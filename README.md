@@ -29,7 +29,7 @@
 
 ## ✅ Sobre o projeto
 
-Este projeto é parte de um desafio para vaga de estágio como desenvolvedor. A proposta consistia em criar uma aplicação estilo dashboard, para administrar eventos públicos e privados.
+Este projeto é parte de um desafio para vaga como desenvolvedor. A proposta consistia em criar uma aplicação estilo dashboard, para administrar eventos públicos e privados.
 
 ## 🚀 Tecnologias
 
