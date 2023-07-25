@@ -1,10 +1,13 @@
-import { useFormContext } from "react-hook-form";
+import { brazilStates } from "@/utils";
 
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/Input";
+import { Select } from "@/components/ui/Select";
+
+import { useEventPlaceForm } from "@/hooks/useEventPlaceForm";
 
 export function EventPlaceForm() {
-  const form = useFormContext();
+  const { control } = useEventPlaceForm();
 
   return (
     <div className="space-y-5">
@@ -12,13 +15,13 @@ export function EventPlaceForm() {
 
       <div className="grid grid-cols-2 gap-4">
         <Form.Field
-          control={form.control}
+          control={control}
           name="zip_code"
           render={({ field }) => (
             <Form.Item>
               <Form.Label>CEP</Form.Label>
               <Form.Control>
-                <Input placeholder="CEP" {...field} />
+                <Input placeholder="CEP" maxLength={9} {...field} />
               </Form.Control>
               <Form.Message />
             </Form.Item>
@@ -26,7 +29,7 @@ export function EventPlaceForm() {
         />
 
         <Form.Field
-          control={form.control}
+          control={control}
           name="number"
           render={({ field }) => (
             <Form.Item>
@@ -40,7 +43,7 @@ export function EventPlaceForm() {
         />
 
         <Form.Field
-          control={form.control}
+          control={control}
           name="address"
           render={({ field }) => (
             <Form.Item className="col-span-2">
@@ -54,7 +57,7 @@ export function EventPlaceForm() {
         />
 
         <Form.Field
-          control={form.control}
+          control={control}
           name="complement"
           render={({ field }) => (
             <Form.Item>
@@ -68,7 +71,7 @@ export function EventPlaceForm() {
         />
 
         <Form.Field
-          control={form.control}
+          control={control}
           name="neighborhood"
           render={({ field }) => (
             <Form.Item>
@@ -82,7 +85,7 @@ export function EventPlaceForm() {
         />
 
         <Form.Field
-          control={form.control}
+          control={control}
           name="city"
           render={({ field }) => (
             <Form.Item>
@@ -96,13 +99,21 @@ export function EventPlaceForm() {
         />
 
         <Form.Field
-          control={form.control}
+          control={control}
           name="state"
           render={({ field }) => (
             <Form.Item>
               <Form.Label>Estado</Form.Label>
               <Form.Control>
-                <Input placeholder="Estado" {...field} />
+                <Select placeholder="Estado" {...field}>
+                  {brazilStates.map((state) => {
+                    return (
+                      <option key={state.value} value={state.value}>
+                        {state.label}
+                      </option>
+                    );
+                  })}
+                </Select>
               </Form.Control>
               <Form.Message />
             </Form.Item>

@@ -4,19 +4,20 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { NewEventFormSchema } from "@/validations";
+import { Button } from "@/components/ui/buttons/Button";
+import { Divider } from "@/components/ui/Divider";
+import { Form } from "@/components/ui/form";
 
-import { Button } from "../ui/buttons/Button";
-import { Divider } from "../ui/Divider";
-import { Form } from "../ui/form";
-import { DateAndTimeForm } from "./NewEventForm/components/DateAndTimeForm";
-import { EventInformationForm } from "./NewEventForm/components/EventInformationForm";
-import { EventPlaceForm } from "./NewEventForm/components/EventPlaceForm";
+import { EventFormSchema } from "@/validations";
 
-type NewEventFormData = z.infer<typeof NewEventFormSchema>;
+import { DateAndTimeForm } from "./components/DateAndTimeForm";
+import { EventInformationForm } from "./components/EventInformationForm";
+import { EventPlaceForm } from "./components/EventPlaceForm";
 
-const defaultValues: NewEventFormData = {
-  event_name: "",
+export type EventFormData = z.infer<typeof EventFormSchema>;
+
+const defaultValues: EventFormData = {
+  name: "",
   privacy: "public",
   description: "",
   zip_code: "",
@@ -35,13 +36,19 @@ interface EventFormProps {
 }
 
 export function EventForm({ id }: EventFormProps) {
-  const form = useForm<NewEventFormData>({
-    resolver: zodResolver(NewEventFormSchema),
-    defaultValues: id ? defaultValues : {},
+  const form = useForm<EventFormData>({
+    resolver: zodResolver(EventFormSchema),
+    defaultValues,
   });
 
-  function onSubmit(data: NewEventFormData) {
+  function onSubmit(data: EventFormData) {
+    if (id) {
+      console.log(data);
+    }
+
     console.log(data);
+
+    form.reset();
   }
 
   return (

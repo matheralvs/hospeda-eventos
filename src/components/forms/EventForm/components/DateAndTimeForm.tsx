@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/Input";
 export interface DateAndTimeFormProps {}
 
 export function DateAndTimeForm(props: DateAndTimeFormProps) {
-  const form = useFormContext();
+  const { control } = useFormContext();
 
   return (
     <div className="space-y-5">
@@ -14,11 +14,11 @@ export function DateAndTimeForm(props: DateAndTimeFormProps) {
 
       <div className="grid grid-cols-2 gap-4">
         <Form.Field
-          control={form.control}
+          control={control}
           name="date"
           render={({ field }) => (
             <Form.Item>
-              <Form.Label>Data</Form.Label>
+              <Form.Label>Data de início</Form.Label>
               <Form.Control>
                 <Input type="date" {...field} />
               </Form.Control>
@@ -28,11 +28,11 @@ export function DateAndTimeForm(props: DateAndTimeFormProps) {
         />
 
         <Form.Field
-          control={form.control}
+          control={control}
           name="time"
           render={({ field }) => (
             <Form.Item>
-              <Form.Label>Horário</Form.Label>
+              <Form.Label>Horário de início</Form.Label>
               <Form.Control>
                 <Input type="time" {...field} />
               </Form.Control>

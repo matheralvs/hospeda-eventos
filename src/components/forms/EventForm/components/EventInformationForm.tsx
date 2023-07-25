@@ -3,9 +3,12 @@ import { useFormContext } from "react-hook-form";
 
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/Input";
+import { TextArea } from "@/components/ui/TextArea";
+
+import { EventFormData } from "../EventForm";
 
 export function EventInformationForm() {
-  const form = useFormContext();
+  const { control } = useFormContext<EventFormData>();
 
   return (
     <div className="space-y-5">
@@ -14,8 +17,8 @@ export function EventInformationForm() {
       </h3>
 
       <Form.Field
-        control={form.control}
-        name="event_name"
+        control={control}
+        name="name"
         render={({ field }) => (
           <Form.Item>
             <Form.Label>Nome do evento</Form.Label>
@@ -28,7 +31,7 @@ export function EventInformationForm() {
       />
 
       <Form.Field
-        control={form.control}
+        control={control}
         name="privacy"
         render={({ field }) => (
           <Form.Item>
@@ -62,18 +65,13 @@ export function EventInformationForm() {
       />
 
       <Form.Field
-        control={form.control}
+        control={control}
         name="description"
         render={({ field }) => (
           <Form.Item>
             <Form.Label>Descrição</Form.Label>
             <Form.Control>
-              <textarea
-                rows={5}
-                placeholder="Adicione uma descrição"
-                className="form-textarea w-full resize-none rounded-xl border-interactive-secondary placeholder:text-content-base/40"
-                {...field}
-              />
+              <TextArea rows={5} placeholder="Descrição" {...field} />
             </Form.Control>
             <Form.Message />
           </Form.Item>
