@@ -1,1 +1,1 @@
-export * from "./newEventForm.validation";
+export * from "./eventForm.validation";
