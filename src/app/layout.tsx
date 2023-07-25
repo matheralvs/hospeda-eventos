@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import { RootLayoutProvider } from "@/providers/RootLayoutProvider";
+import { RootLayoutProvider } from "@/providers";
 
 import { Toaster } from "@/components/ui/Toaster";
 
