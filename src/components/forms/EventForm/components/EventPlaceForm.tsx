@@ -9,7 +9,7 @@ import { Select } from "@/components/ui/Select";
 import { addressService } from "@/services/addressService";
 import { AddressInput } from "@/services/dtos/AddressServiceDTO";
 
-import { zipCodeMask } from "@/helpers/formatZipCode";
+import { zipCodeMask } from "@/helpers";
 
 import { brazilStates } from "@/utils";
 
