@@ -13,6 +13,10 @@ class EventService {
   async createWithAddress(eventData: EventWithAddressInput) {
     await api.post("/event", eventData);
   }
+
+  async deleteEventById(id: string) {
+    await api.delete(`/event/${id}`);
+  }
 }
 
 export const eventService = new EventService();

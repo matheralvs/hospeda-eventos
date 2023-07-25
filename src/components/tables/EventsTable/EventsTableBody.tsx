@@ -2,34 +2,51 @@
 
 import Image from "next/image";
 
+import { useEvent } from "@/contexts/hooks";
 import * as Popover from "@radix-ui/react-popover";
 import dayjs from "dayjs";
 import { MoreHorizontal, Pencil, Trash2, Calendar, MapPin } from "lucide-react";
 
 import { IconButton } from "@/components/ui/buttons/IconButton";
 
+import { useToast } from "@/hooks/useToast";
+
+import { EventInput } from "@/services/dtos/EventServiceDTO";
+
 import { Badge } from "../../ui/Badge";
 import { Divider } from "../../ui/Divider";
 import { OptionsPopover } from "./components/OptionsPopover";
 
 interface EventsTableBodyProps {
-  name: string;
-  privacy: "public" | "private";
-  city: string;
-  state: string;
-  initialDate: string;
+  event: EventInput;
 }
 
-export function EventsTableBody({
-  name,
-  privacy,
-  city,
-  state,
-  initialDate,
-}: EventsTableBodyProps) {
+export function EventsTableBody({ event }: EventsTableBodyProps) {
+  const { id, name, privacy, city, state, initialDate } = event;
+
+  const { deleteEventById, listEvents } = useEvent();
+
+  const { toast } = useToast();
+
   const tdStyle = "whitespace-nowrap px-6 py-3 border-b border-layout-body";
 
   const dateFormatted = dayjs(initialDate).format("DD/MM/YYYY");
+
+  async function handleDeleEvent(eventId: string) {
+    try {
+      await deleteEventById(eventId);
+
+      toast.success("Evento deletado com sucesso!");
+
+      await listEvents();
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message);
+      }
+
+      throw error;
+    }
+  }
 
   return (
     <tbody>
@@ -75,7 +92,8 @@ export function EventsTableBody({
               <OptionsPopover.Actions
                 icon={Trash2}
                 label="Excluir"
-                type="delete"
+                variant="delete"
+                onClick={() => handleDeleEvent(id)}
               />
             </OptionsPopover.Root>
           </Popover.Root>
