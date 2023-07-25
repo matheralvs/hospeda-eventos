@@ -8,9 +8,19 @@ export interface EventInput {
   initialTime: string;
 }
 
+export interface EventWithAddressInput {
+  name: string;
+  privacy: string;
+  description: string;
+  address: Address;
+  initialDate: string;
+  initialTime: string;
+}
+
 export interface Address {
   zipCode: string;
   number: string;
+  street: string;
   complement: string;
   neighborhood: string;
   city: string;

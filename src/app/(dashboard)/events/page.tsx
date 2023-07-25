@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 
-import { eventService } from "@/services/eventService";
-
 import { HeaderWithActions } from "@/components/HeadingWithActions";
 import { EventsTable } from "@/components/tables/EventsTable";
+
+import { eventService } from "@/services/eventService";
 
 export const metadata: Metadata = {
   title: "Meus Eventos",

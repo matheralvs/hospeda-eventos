@@ -1,10 +1,10 @@
-import { brazilStates } from "@/utils";
-
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
 
 import { useEventPlaceForm } from "@/hooks/useEventPlaceForm";
+
+import { brazilStates } from "@/utils";
 
 export function EventPlaceForm() {
   const { control } = useEventPlaceForm();
@@ -16,7 +16,7 @@ export function EventPlaceForm() {
       <div className="grid grid-cols-2 gap-4">
         <Form.Field
           control={control}
-          name="zip_code"
+          name="address.zipCode"
           render={({ field }) => (
             <Form.Item>
               <Form.Label>CEP</Form.Label>
@@ -30,7 +30,7 @@ export function EventPlaceForm() {
 
         <Form.Field
           control={control}
-          name="number"
+          name="address.number"
           render={({ field }) => (
             <Form.Item>
               <Form.Label>Número</Form.Label>
@@ -44,7 +44,7 @@ export function EventPlaceForm() {
 
         <Form.Field
           control={control}
-          name="address"
+          name="address.street"
           render={({ field }) => (
             <Form.Item className="col-span-2">
               <Form.Label>Endereço</Form.Label>
@@ -58,7 +58,7 @@ export function EventPlaceForm() {
 
         <Form.Field
           control={control}
-          name="complement"
+          name="address.complement"
           render={({ field }) => (
             <Form.Item>
               <Form.Label>Complemento</Form.Label>
@@ -72,7 +72,7 @@ export function EventPlaceForm() {
 
         <Form.Field
           control={control}
-          name="neighborhood"
+          name="address.neighborhood"
           render={({ field }) => (
             <Form.Item>
               <Form.Label>Bairro</Form.Label>
@@ -86,7 +86,7 @@ export function EventPlaceForm() {
 
         <Form.Field
           control={control}
-          name="city"
+          name="address.city"
           render={({ field }) => (
             <Form.Item>
               <Form.Label>Cidade</Form.Label>
@@ -100,7 +100,7 @@ export function EventPlaceForm() {
 
         <Form.Field
           control={control}
-          name="state"
+          name="address.state"
           render={({ field }) => (
             <Form.Item>
               <Form.Label>Estado</Form.Label>

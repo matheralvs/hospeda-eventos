@@ -1,12 +1,12 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/buttons/Button";
 import { Divider } from "@/components/ui/Divider";
 import { Form } from "@/components/ui/form";
+
+import { useEventForm } from "@/hooks/useEventForm";
 
 import { EventFormSchema } from "@/validations";
 
@@ -16,40 +16,12 @@ import { EventPlaceForm } from "./components/EventPlaceForm";
 
 export type EventFormData = z.infer<typeof EventFormSchema>;
 
-const defaultValues: EventFormData = {
-  name: "",
-  privacy: "public",
-  description: "",
-  zip_code: "",
-  number: "",
-  address: "",
-  complement: "",
-  neighborhood: "",
-  city: "",
-  state: "",
-  date: "",
-  time: "",
-};
-
 interface EventFormProps {
   id?: string;
 }
 
 export function EventForm({ id }: EventFormProps) {
-  const form = useForm<EventFormData>({
-    resolver: zodResolver(EventFormSchema),
-    defaultValues,
-  });
-
-  function onSubmit(data: EventFormData) {
-    if (id) {
-      console.log(data);
-    }
-
-    console.log(data);
-
-    form.reset();
-  }
+  const { form, onSubmit } = useEventForm();
 
   return (
     <Form.Root {...form}>

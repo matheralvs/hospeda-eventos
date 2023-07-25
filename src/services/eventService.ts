@@ -1,5 +1,5 @@
 import { api } from "./api";
-import { EventInput } from "./dtos/EventServiceDTO";
+import { EventInput, EventWithAddressInput } from "./dtos/EventServiceDTO";
 
 class EventService {
   async list() {
@@ -10,8 +10,8 @@ class EventService {
     return eventResponseData;
   }
 
-  async create(eventData: EventInput) {
-    await api.post<EventInput>("/event", eventData);
+  async createWithAddress(eventData: EventWithAddressInput) {
+    await api.post("/event", eventData);
   }
 }
 

@@ -3,10 +3,10 @@ import { useFormContext } from "react-hook-form";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/Input";
 
-export interface DateAndTimeFormProps {}
+import { EventFormData } from "../EventForm";
 
-export function DateAndTimeForm(props: DateAndTimeFormProps) {
-  const { control } = useFormContext();
+export function DateAndTimeForm() {
+  const { control } = useFormContext<EventFormData>();
 
   return (
     <div className="space-y-5">
@@ -15,7 +15,7 @@ export function DateAndTimeForm(props: DateAndTimeFormProps) {
       <div className="grid grid-cols-2 gap-4">
         <Form.Field
           control={control}
-          name="date"
+          name="initialDate"
           render={({ field }) => (
             <Form.Item>
               <Form.Label>Data de início</Form.Label>
@@ -29,7 +29,7 @@ export function DateAndTimeForm(props: DateAndTimeFormProps) {
 
         <Form.Field
           control={control}
-          name="time"
+          name="initialTime"
           render={({ field }) => (
             <Form.Item>
               <Form.Label>Horário de início</Form.Label>
