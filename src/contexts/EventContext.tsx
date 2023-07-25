@@ -1,10 +1,4 @@
-import {
-  ReactNode,
-  createContext,
-  startTransition,
-  useCallback,
-  useState,
-} from "react";
+import { ReactNode, createContext, useCallback, useState } from "react";
 
 import {
   EventInput,
@@ -17,6 +11,10 @@ interface EventContextValue {
   loading: boolean;
   createEventWithAddress: (eventData: EventWithAddressInput) => Promise<void>;
   listEvents: () => Promise<void>;
+  updateEvent: (
+    eventId: string,
+    eventData: EventWithAddressInput,
+  ) => Promise<void>;
   deleteEventById: (eventId: string) => Promise<void>;
 }
 
@@ -37,7 +35,9 @@ export function EventContextProvider({ children }: EventContextProviderProps) {
 
         await eventService.createWithAddress(eventData);
       } catch (error) {
-        console.log(error);
+        if (error instanceof Error) {
+          console.log(error.message);
+        }
       } finally {
         setLoading(false);
       }
@@ -49,11 +49,13 @@ export function EventContextProvider({ children }: EventContextProviderProps) {
     try {
       setLoading(true);
 
-      const eventsResponse = await eventService.list();
+      const eventsResponse = await eventService.listEvents();
 
       setEvents(eventsResponse);
     } catch (error) {
-      console.log(error);
+      if (error instanceof Error) {
+        console.log(error.message);
+      }
     } finally {
       setLoading(false);
     }
@@ -65,11 +67,30 @@ export function EventContextProvider({ children }: EventContextProviderProps) {
 
       await eventService.deleteEventById(eventId);
     } catch (error) {
-      console.log(error);
+      if (error instanceof Error) {
+        console.log(error.message);
+      }
     } finally {
       setLoading(false);
     }
   }, []);
+
+  const updateEvent = useCallback(
+    async (eventId: string, eventData: EventWithAddressInput) => {
+      try {
+        setLoading(true);
+
+        await eventService.updateEvent(eventId, eventData);
+      } catch (error) {
+        if (error instanceof Error) {
+          console.log(error.message);
+        }
+      } finally {
+        setLoading(false);
+      }
+    },
+    [],
+  );
 
   return (
     <EventContext.Provider
@@ -78,6 +99,7 @@ export function EventContextProvider({ children }: EventContextProviderProps) {
         loading,
         createEventWithAddress,
         listEvents,
+        updateEvent,
         deleteEventById,
       }}
     >

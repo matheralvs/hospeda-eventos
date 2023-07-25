@@ -1,8 +1,12 @@
 import { api } from "./api";
-import { EventInput, EventWithAddressInput } from "./dtos/EventServiceDTO";
+import {
+  EventInput,
+  EventWithAddressInput,
+  EventWithAddressOutput,
+} from "./dtos/EventServiceDTO";
 
 class EventService {
-  async list() {
+  async listEvents() {
     const { data: eventResponseData } = await api.get<EventInput[]>(
       "/event/list",
     );
@@ -16,6 +20,16 @@ class EventService {
 
   async deleteEventById(id: string) {
     await api.delete(`/event/${id}`);
+  }
+
+  async showEvent(id: string) {
+    const { data: eventResponseData } = await api.get(`/event/show/${id}`);
+
+    return eventResponseData;
+  }
+
+  async updateEvent(id: string, eventData: EventWithAddressOutput) {
+    await api.put(`/event/${id}`, eventData);
   }
 }
 

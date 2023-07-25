@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 import { useEvent } from "@/contexts/hooks";
 import * as Popover from "@radix-ui/react-popover";
@@ -28,6 +29,8 @@ export function EventsTableBody({ event }: EventsTableBodyProps) {
 
   const { toast } = useToast();
 
+  const router = useRouter();
+
   const tdStyle = "whitespace-nowrap px-6 py-3 border-b border-layout-body";
 
   const dateFormatted = dayjs(initialDate).format("DD/MM/YYYY");
@@ -41,11 +44,15 @@ export function EventsTableBody({ event }: EventsTableBodyProps) {
       await listEvents();
     } catch (error) {
       if (error instanceof Error) {
-        toast.error(error.message);
       }
+      toast.error("Erro ao deletar o evento!");
 
       throw error;
     }
+  }
+
+  function handleEditEvent(eventId: string) {
+    router.push(`/events/edit/${eventId}`);
   }
 
   return (
@@ -87,7 +94,11 @@ export function EventsTableBody({ event }: EventsTableBodyProps) {
             </Popover.Trigger>
 
             <OptionsPopover.Root>
-              <OptionsPopover.Actions icon={Pencil} label="Editar" />
+              <OptionsPopover.Actions
+                icon={Pencil}
+                label="Editar"
+                onClick={() => handleEditEvent(id)}
+              />
               <Divider />
               <OptionsPopover.Actions
                 icon={Trash2}

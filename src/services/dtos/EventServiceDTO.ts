@@ -10,12 +10,15 @@ export interface EventInput {
 
 export interface EventWithAddressInput {
   name: string;
-  privacy: string;
+  privacy: "public" | "private";
   description: string;
   address: Address;
-  initialDate: string;
+  initialDate: Date;
   initialTime: string;
 }
+
+export interface EventWithAddressOutput
+  extends Partial<EventWithAddressInput> {}
 
 export interface Address {
   zipCode: string;

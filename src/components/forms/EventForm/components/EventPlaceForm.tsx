@@ -1,13 +1,60 @@
+import { useCallback, useEffect } from "react";
+
+import { useFormContext } from "react-hook-form";
+
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
 
-import { useEventPlaceForm } from "@/hooks/useEventPlaceForm";
+import { addressService } from "@/services/addressService";
+import { AddressInput } from "@/services/dtos/AddressServiceDTO";
+
+import { zipCodeMask } from "@/helpers/formatZipCode";
 
 import { brazilStates } from "@/utils";
 
+import { EventFormData } from "../EventForm";
+
 export function EventPlaceForm() {
-  const { control } = useEventPlaceForm();
+  const {
+    setValue,
+    watch,
+    control,
+    formState: { isDirty },
+  } = useFormContext<EventFormData>();
+
+  const zipCodeValue = watch("address.zipCode");
+
+  const handleSetAddressData = useCallback(
+    (data: AddressInput) => {
+      const { gia, logradouro, complemento, bairro, localidade, uf } = data;
+
+      setValue("address.number", gia);
+      setValue("address.street", logradouro);
+      setValue("address.complement", complemento);
+      setValue("address.neighborhood", bairro);
+      setValue("address.city", localidade);
+      setValue("address.state", uf);
+    },
+    [setValue],
+  );
+
+  const handleFetchAddress = useCallback(
+    async (zipCode: string) => {
+      const zipCodeData = await addressService.list(zipCode);
+
+      handleSetAddressData(zipCodeData);
+    },
+    [handleSetAddressData],
+  );
+
+  useEffect(() => {
+    setValue("address.zipCode", zipCodeMask(zipCodeValue));
+
+    if (zipCodeValue?.length !== 9) return;
+
+    handleFetchAddress(zipCodeValue);
+  }, [handleFetchAddress, isDirty, setValue, zipCodeValue]);
 
   return (
     <div className="space-y-5">
