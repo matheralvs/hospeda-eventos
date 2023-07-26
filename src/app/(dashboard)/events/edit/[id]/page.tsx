@@ -1,7 +1,13 @@
+import { Metadata } from "next";
+
 import { EventForm } from "@/components/forms/EventForm/EventForm";
 import { EventHeader } from "@/components/pages/events/EventHeader";
 
 import { eventService } from "@/services/eventService";
+
+export const metadata: Metadata = {
+  title: "Editar Evento",
+};
 
 interface EventEditProps {
   params: {
