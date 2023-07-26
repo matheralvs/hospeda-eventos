@@ -10,6 +10,10 @@ import { Empty } from "@/components/layouts/Empty";
 import { Loading } from "@/components/Loading";
 import { EventsTable } from "@/components/tables/EventsTable";
 
+export const metadata: Metadata = {
+  title: "Meus Eventos",
+};
+
 export default function Events() {
   const { events, listEvents } = useEvent();
 
